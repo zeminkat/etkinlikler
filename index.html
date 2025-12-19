@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bölme İşlemi - Etkileşimli Çalışma</title>
+  <style>
+    :root{ --bg:#111827; --panel:#ffffffee; --shadow:0 12px 30px rgba(0,0,0,.18); }
+    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#0b1220; color:#111; }
+    .wrap{ min-height:100vh; display:flex; flex-direction:column; }
+    header{ position:sticky; top:0; z-index:10; background:var(--panel); backdrop-filter: blur(8px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+    .bar{ display:flex; gap:.6rem; align-items:center; padding:.6rem .8rem; flex-wrap:wrap; }
+    .bar .spacer{ flex:1; }
+    button, select, label{ font:inherit; }
+    button{ border:0; background:#111827; color:#fff; padding:.55rem .75rem; border-radius:.7rem; cursor:pointer; box-shadow: 0 6px 16px rgba(0,0,0,.18); }
+    button.secondary{ background:#334155; }
+    button:disabled{ opacity:.5; cursor:not-allowed; }
+    .chip{ display:flex; align-items:center; gap:.45rem; padding:.45rem .6rem; border-radius:.7rem; background:#eef2ff; }
+    .chip input{ transform: scale(1.1); }
+    main{ flex:1; display:flex; justify-content:center; padding: 12px; }
+    .stageWrap{ width:min(1100px, 96vw); }
+    .stage{ width:100%; aspect-ratio: 16 / 9; background: linear-gradient(90deg, #8a5cf6 0%, #55e2e7 100%);
+      border-radius: 18px; box-shadow: var(--shadow); overflow:hidden; position:relative; }
+    .slide{ position:absolute; inset:0; display:none; }
+    .slide.active{ display:block; }
+    svg.board{ width:100%; height:100%; touch-action:none; user-select:none; }
+    .shape{ cursor:default; }
+    .shape.draggable{ cursor:grab; }
+    .shape.dragging{ cursor:grabbing; }
+    footer{ padding: 8px 12px 18px; color:#cbd5e1; font-size: 12px; text-align:center; }
+    a{ color:#93c5fd; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="bar">
+      <button id="prevBtn" class="secondary">◀</button>
+      <button id="nextBtn" class="secondary">▶</button>
+
+      <div class="chip">
+        <span>Sayfa</span>
+        <select id="slideSel"></select>
+      </div>
+
+      <button id="resetBtn">Sıfırla</button>
+
+      <div class="spacer"></div>
+</div>
+  </header>
+
+  <main>
+    <div class="stageWrap">
+      <div id="stage" class="stage">
+        <!-- slides injected here -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Bu çalışma, paylaşılan PPTX'ten otomatik çıkarılmış etkileşimli bir web sayfasıdır.
+    Aynı cihazda kaldığın yer <b>otomatik kaydedilir</b>.
+  </footer>
+</div>
+
+<script src="slides.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
